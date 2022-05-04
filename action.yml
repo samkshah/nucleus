@@ -1,0 +1,63 @@
+name: 'nucleus'
+description: 'Retrieve Vulnerabilities from Nucleus'
+inputs:
+  NUCLEUS_API_KEY:
+    description: >
+      API key for Nucleus. This key allows to authenticate Nucleus via API and retrieve vulnerabilities or list of assets. 
+      You can create this key in your Nucleus web app account. Once you have the key, set it up as a repository secret in 
+      your Github Settings/Secrets/Actions configuration
+      [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+    default: ${{ secrets.NUCLEUS_API_KEY }}
+    required: true
+
+  NUCLEUS_PROJECT_GROUP:
+    description: >
+      This is the project group defined in Nucleus. This is normally the product name or the application where
+      your assets are grouped. You can use any filter that you use in Nucleus to search for the assets. 
+      Example: '/Product Name/Cybersecurity Incident Response'
+    required: true
+
+  NUCLEUS_PROJECT_ID:
+    description: >
+      Project ID for Nucleus environment. This can be easily found in the URL when you search for your assets in Nucleus.
+    required: true
+
+  NUCLEUS_DATAFOLDER:
+    description: >
+      This is the folder where vulnerabilities data is stored after script execution. This should be the folder in the same
+      repository and directory where the script is executed from.
+    default: 'vulnerabilities'
+    required: true
+
+  NUCLEUS_API_ENDPOINT:
+    description: >
+      Nucleus API endpoint
+    default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
+    required: true
+
+  LOGLEVEL:
+    description: >
+      This can be used to set the log level for the script. If you are running this for non-prod and want to see more logging during runtime,
+      set this as "DEBUG or INFO".
+      choices:
+      - 'DEBUG'
+      - 'INFO'
+      - 'WARNING'
+      - 'ERROR'
+      - 'CRITICAL'
+    default: 'WARNING'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.NUCLEUS_API_KEY }}
+    - ${{ inputs.NUCLEUS_PROJECT_GROUP }}
+    - ${{ inputs.NUCLEUS_PROJECT_ID }}
+    - ${{ inputs.NUCLEUS_DATAFOLDER }}
+    - ${{ inputs.NUCLEUS_API_ENDPOINT }}
+    - ${{ inputs.LOGLEVEL }}
+branding:
+  color: "green"
+  icon: "lock"
