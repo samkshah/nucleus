@@ -2,6 +2,7 @@ on: [push]
 
 jobs:
   retrieve-nucleus-vulns:
+    name: Nucleus_Vulnerability_Report
     runs-on: ubuntu-latest
     env:
       NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
@@ -10,7 +11,9 @@ jobs:
       NUCLEUS_PROJECT_ID: "13000008"
       NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
       LOGLEVEL: ${{ secrets.LOGLEVEL }}
-    name: Retrieve Vulns from Nucleus
+    permissions:
+      contents: write
+
     steps:
       - name: Get Vulns
         id: get-vulns
