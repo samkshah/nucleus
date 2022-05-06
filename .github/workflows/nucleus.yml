@@ -13,10 +13,7 @@ jobs:
     permissions:
       contents: write
     env:
-      NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
       NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
-      NUCLEUS_DATAFOLDER: "data"
-      NUCLEUS_PROJECT_ID: "13000008"
       NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
       LOGLEVEL: ${{ secrets.LOGLEVEL }}
     steps:
