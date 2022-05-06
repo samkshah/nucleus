@@ -7,4 +7,5 @@ RUN pip install -r requirements.txt
 
 # Run the application
 COPY getVulns.py test.py ./
-CMD ["python3", "test.py"]
+RUN chmod +x test.py
+ENTRYPOINT [ "test.py" ]
