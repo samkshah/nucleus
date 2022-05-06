@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
-      NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-      LOGLEVEL: ${{ secrets.LOGLEVEL }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Get Vulns
         id: get-vulns
         uses: ./
+        env:
+            NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
+            NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
+            LOGLEVEL: "INFO"
