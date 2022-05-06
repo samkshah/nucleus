@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 
 # Run the application
 COPY getVulns.py .
-CMD ["python3", "getVulns.py"]
+CMD ["python", "getVulns.py"]
