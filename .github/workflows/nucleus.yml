@@ -6,13 +6,6 @@ jobs:
   retrieve-nucleus-vulns:
     name: Nucleus_Vulnerability_Report
     runs-on: ubuntu-latest
-    env:
-      NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
-      NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
-      NUCLEUS_DATAFOLDER: "data"
-      NUCLEUS_PROJECT_ID: "13000008"
-      NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-      LOGLEVEL: ${{ secrets.LOGLEVEL }}
     permissions:
       contents: write
 
@@ -23,3 +16,10 @@ jobs:
       - name: Get Vulns
         id: get-vulns
         uses: samkshah/nucleus@v1.1
+        env:
+          NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
+          NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
+          NUCLEUS_DATAFOLDER: "data"
+          NUCLEUS_PROJECT_ID: "13000008"
+          NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
+          LOGLEVEL: ${{ secrets.LOGLEVEL }}
