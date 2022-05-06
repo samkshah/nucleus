@@ -26,7 +26,7 @@ inputs:
     description: >
       This is the folder where vulnerabilities data is stored after script execution. This should be the folder in the same
       repository and directory where the script is executed from.
-    default: 'vulnerabilities'
+    default: 'data'
     required: true
 
   NUCLEUS_API_ENDPOINT:
