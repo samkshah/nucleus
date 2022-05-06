@@ -4,4 +4,5 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY getVulns.py .
 RUN chmod +x getVulns.py
+RUN ls -lag
 ENTRYPOINT [ "getVulns.py" ]
