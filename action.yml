@@ -33,7 +33,7 @@ inputs:
     description: >
       Nucleus API endpoint
     default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
-    required: true
+    required: false
 
   LOGLEVEL:
     description: >
@@ -46,7 +46,7 @@ inputs:
       - 'ERROR'
       - 'CRITICAL'
     default: 'WARNING'
-    required: true
+    required: false
 
 runs:
   using: 'docker'
@@ -58,6 +58,7 @@ runs:
     - ${{ inputs.NUCLEUS_DATAFOLDER }}
     - ${{ inputs.NUCLEUS_API_ENDPOINT }}
     - ${{ inputs.LOGLEVEL }}
+
 branding:
   color: "green"
   icon: "lock"
