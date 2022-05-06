@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  retrieve-nucleus-vulns:
+    runs-on: ubuntu-latest
+    name: Retrieve Vulns from Nucleus
+    steps:
+      - name: Get Vulns
+        id: get-vulns
+        uses: samkshah/nucleus@v1
+        with:
+          NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
+          NUCLEUS_PROJECT_GROUP: '/Product Name/Cybersecurity Incident Response'
+          NUCLEUS_PROJECT_ID: '13000008'
+          NUCLEUS_DATAFOLDER: 'data'
