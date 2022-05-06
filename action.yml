@@ -7,7 +7,6 @@ inputs:
       You can create this key in your Nucleus web app account. Once you have the key, set it up as a repository secret in 
       your Github Settings/Secrets/Actions configuration
       [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
-    default: ${{ secrets.NUCLEUS_API_KEY }}
     required: true
 
   NUCLEUS_PROJECT_GROUP:
