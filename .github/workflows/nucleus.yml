@@ -14,7 +14,7 @@ jobs:
 
       - name: Get Vulns
         id: get-vulns
-        uses: ./
+        uses: ./action.yml
         env:
           NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
           NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
