@@ -1,16 +1,4 @@
 #!/usr/bin/python3
-####
-# Scope: Retrieve active Critical, High and Medium level vulnerabilities for specific assets from Nucleus
-# Prerequisites: Followign environment variables are required. These can be set in local environment file. If you are hosting this code in
-# Github, make sure you have appropriate secrets setup in Github settings.
-# 1. NUCLEUS_API_KEY: This is the API key for Nucleus. You can get it from Nucleus web app settings.
-# 2. NUCLEUS_PROJECT_GROUP: This is the project group for the project you want to retrieve data from. You can get this from Nucleus web app where you are running queries.
-# 3. LOGLEVEL: Set this as "INFO" if you want to see more details in logs generated during runtime. Keep it as "WARNING" or "ERROR" if you want to see less details (such as production environment).
-# 4. NUCLEUS_PROJECT_ID: Should be "13000008" for AA Prod data
-# 5. NUCLEUS_API_ENDPOINT: Should be https://nucleus-us3.nucleussec.com/nucleus/api for AA Prod data
-# 6. NUCLEUS_dataFolder: Folder name where you want to store vulnerability data.
-###
-
 import requests
 import logging
 import json
