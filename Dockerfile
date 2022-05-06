@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:latest
 LABEL org.opencontainers.image.authors="16841946+samkshah@users.noreply.github.com"
 
 # Install dependencies
