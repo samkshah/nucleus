@@ -7,8 +7,8 @@
 # 2. NUCLEUS_PROJECT_GROUP: This is the project group for the project you want to retrieve data from. You can get this from Nucleus web app where you are running queries.
 # 3. LOGLEVEL: Set this as "INFO" if you want to see more details in logs generated during runtime. Keep it as "WARNING" or "ERROR" if you want to see less details (such as production environment).
 # 4. NUCLEUS_PROJECT_ID: Should be "13000008" for AA Prod data
-# 5. NUCLEUS_API_ENDPOINT: Should be "https://nucleus-us3.nucleussec.com/nucleus/api" for AA Prod data
-# 6. NUCLEUS_DATAFOLDER: Folder name where you want to store vulnerability data. This should be a folder in the same directory where you are running this script from. E.g. "vulnerabilities"
+# 5. NUCLEUS_API_ENDPOINT: Should be https://nucleus-us3.nucleussec.com/nucleus/api for AA Prod data
+# 6. NUCLEUS_dataFolder: Folder name where you want to store vulnerability data.
 ###
 
 import requests
@@ -31,17 +31,16 @@ path = os.path.dirname(os.path.abspath(__file__))
 project_id = os.environ['NUCLEUS_PROJECT_ID']
 asset_group = os.environ['NUCLEUS_PROJECT_GROUP']
 # This is the folder where the output files will be saved
-datafolder = '{}/{}'.format(path, os.environ['NUCLEUS_DATAFOLDER'])
+dataFolder = '{}/{}'.format(path, os.environ['NUCLEUS_DATAFOLDER'])
 apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
 
-
-### Datafolder configuration
-# Create data folder if doesn't exist and create .gitinclude file
-if not os.path.exists(datafolder):
-    os.makedirs(datafolder)
+### dataFolder configuration
+# Create nucleus folder if doesn't exist in repository
+if not os.path.exists(dataFolder):
+    os.makedirs(dataFolder)
 
 # create .gitinclude if doesn't exist
-gitinclude = '{}/.gitinclude'.format(datafolder)
+gitinclude = '{}/.gitinclude'.format(dataFolder)
 if not os.path.exists(gitinclude):
     # create a file
     with open(gitinclude, 'w') as fp:
@@ -156,9 +155,9 @@ for item in assets:
 # write hostList to csv file
 filename = 'vulnAssets.csv'
 df = pd.DataFrame(hostList)
-df.to_csv(os.path.join(path, datafolder, filename), index=False, header=True)
+df.to_csv(os.path.join(path, dataFolder, filename), index=False, header=True)
 logging.info('List of vulnerable hosts saved to {}...'.format(
-    os.path.join(path, datafolder, filename)))
+    os.path.join(path, dataFolder, filename)))
 
 #######
 # Get vulnerabilities for each of above assets
@@ -202,18 +201,18 @@ for item in assets:
                 # convert list to json object
                 vulnObj = json.dumps(vulnList, indent=4)
                 # save json object to file
-                with open(os.path.join(path, datafolder, jsonFile), 'w') as outfile:
+                with open(os.path.join(path, dataFolder, jsonFile), 'w') as outfile:
                     json.dump(vulnList, outfile)
                 logging.info('...✅ Vulnerabilities saved to {}'.format(
-                    os.path.join(path, datafolder, jsonFile)))
+                    os.path.join(path, dataFolder, jsonFile)))
                 #save list to csv file
                 # df = pd.DataFrame(vulnList)
                 # Flatten and convert list to a data frame
                 df = pd.json_normalize(vulnList, max_level=1, errors='ignore')
-                df.to_csv(os.path.join(path, datafolder, csvFile), sep=',',
+                df.to_csv(os.path.join(path, dataFolder, csvFile), sep=',',
                           encoding='utf-8', index=None, header=True)  # Save as csv file
                 logging.info('...✅ Vulnerabilities saved to {}'.format(
-                    os.path.join(path, datafolder, csvFile)))
+                    os.path.join(path, dataFolder, csvFile)))
             else:
                 logging.warning(
                     "🚩Something went wrong - couldn't find any any vulnerabilities")
