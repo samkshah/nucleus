@@ -15,6 +15,4 @@ jobs:
       - name: Get Vulns
         uses: ./
         with:
-            NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
             NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-            LOGLEVEL: "INFO"
