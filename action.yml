@@ -5,6 +5,24 @@ inputs:
   NUCLEUS_API_KEY:
     description: 'Nucleus Auth Token'
     required: true
+  NUCLEUS_PROJECT_GROUP:
+    description: 'Nucleus Project Group'
+    required: true
+  NUCLEUS_PROJECT_ID:
+    description: 'Nucleus Project ID'
+    required: true
+  NUCLEUS_DATAFOLDER:
+    description: 'Nucleus Datafolder'
+    required: true
+    default: 'vulnerabilities'
+  NUCLEUS_API_ENDPOINT:
+    description: 'Nucleus API Endpoint'
+    required: true
+    default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
+  LOGLEVEL:
+    description: 'Log Level'
+    required: false
+    default: 'WARNING'
 runs:
   using: 'docker'
   image: 'Dockerfile'
