@@ -22,17 +22,18 @@ project_id = os.environ['NUCLEUS_PROJECT_ID']
 
 print ("project_id: " + project_id)
 
-exit()
-
 asset_group = os.environ['NUCLEUS_PROJECT_GROUP']
-# This is the folder where the output files will be saved
-dataFolder = '{}/{}'.format(path, os.environ['NUCLEUS_DATAFOLDER'])
+
 apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
 
 ### dataFolder configuration
+# This is the folder where the output files will be saved
+# dataFolder = '{}/{}'.format(path, os.environ['NUCLEUS_DATAFOLDER'])
 # Create nucleus folder if doesn't exist in repository
-if not os.path.exists(dataFolder):
-    os.makedirs(dataFolder)
+# if not os.path.exists(dataFolder):
+#     os.makedirs(dataFolder)
+dataFolder = os.environ['NUCLEUS_DATAFOLDER']
+dataFolder.mkdir(parents=True, exist_ok=True)
 
 # create .gitinclude if doesn't exist
 gitinclude = '{}/.gitinclude'.format(dataFolder)
