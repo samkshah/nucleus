@@ -20,5 +20,4 @@ jobs:
             NUCLEUS_PROJECT_ID: '13000008'
             LOGLEVEL: 'INFO'
             NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
-            NUCLEUS_DATAFOLDER: "vulnerabilities"
-            
+            NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
