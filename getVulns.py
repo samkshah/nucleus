@@ -15,8 +15,15 @@ logging.basicConfig(
 # Get directory path for this file - ensures that the output files are saved in the same directory
 path = os.path.dirname(os.path.abspath(__file__))
 
+print ("here's the path: " + path)
+
 # Global variables - change these to match your Nucleus account
 project_id = os.environ['NUCLEUS_PROJECT_ID']
+
+print ("project_id: " + project_id)
+
+exit()
+
 asset_group = os.environ['NUCLEUS_PROJECT_GROUP']
 # This is the folder where the output files will be saved
 dataFolder = '{}/{}'.format(path, os.environ['NUCLEUS_DATAFOLDER'])
