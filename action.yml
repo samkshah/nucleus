@@ -1,16 +1,12 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'get-nucleus-vulns'
+description: 'Retrieve asset vulnerabilities from Nucleus'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  NUCLEUS_API_KEY:
+    description: 'Nucleus Auth Token'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.NUCLEUS_API_KEY }}
