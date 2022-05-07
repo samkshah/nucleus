@@ -7,8 +7,7 @@ import os
 import sys
 from time import sleep
 
-print "test"
-
+print ("test")
 
 # # Configure logging - Default "WARNING" for production, set to "DEBUG" for development in environment variables
 # LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
