@@ -3,17 +3,32 @@ on:
   push:
 
 jobs:
-  retrieve-nucleus-vulns:
-    name: Nucleus_Vulnerability_Report
+  # retrieve-nucleus-vulns:
+  #   name: Nucleus_Vulnerability_Report
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v2
+  #     - name: Get Vulns
+  #       uses: ./
+  #       env:
+  #           NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
+  #           NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
+  #           LOGLEVEL: "INFO"
+  test-hello-world:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    name: 'Hello World'
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Get Vulns
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Hello World'
+        id: 'hello'
         uses: ./
-        env:
-            NUCLEUS_PROJECT_GROUP: "/Product Name/Cybersecurity Incident Response"
-            NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-            LOGLEVEL: "INFO"
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - name: 'Get Output'
+        run: echo "the time was ${{ steps.hello.outputs.time }}"
+
