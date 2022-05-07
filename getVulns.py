@@ -33,7 +33,7 @@ apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
 # if not os.path.exists(dataFolder):
 #     os.makedirs(dataFolder)
 dataFolder = os.environ['NUCLEUS_DATAFOLDER']
-dataFolder.mkdir(parents=True, exist_ok=True)
+os.makedirs(dataFolder, exist_ok=True, parents=True)
 
 # create .gitinclude if doesn't exist
 gitinclude = '{}/.gitinclude'.format(dataFolder)
