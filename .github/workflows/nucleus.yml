@@ -23,7 +23,7 @@ jobs:
             NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
         with:
           args:
-            --volume=nucleus/vulnerabilities:/nucleus/vulnerabilities
+            --volume=nucleus/vulnerabilities:/vulnerabilities
       - name: List Vulns
         run: 
           ls -l {{ env.NUCLEUS_DATAFOLDER }}
