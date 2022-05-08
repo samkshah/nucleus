@@ -8,22 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+        NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
+        NUCLEUS_PROJECT_GROUP: '/Product Name/Cybersecurity Incident Response'
+        NUCLEUS_PROJECT_ID: '13000008'
+        LOGLEVEL: 'INFO'
+        NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
+        NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Get Vulns
         uses: ./
-        env:
-            NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-            NUCLEUS_PROJECT_GROUP: '/Product Name/Cybersecurity Incident Response'
-            NUCLEUS_PROJECT_ID: '13000008'
-            LOGLEVEL: 'INFO'
-            NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
-            NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
-        with:
-          args:
-            --volume=vulnerabilities:vulnerabilities
+
       - name: List Vulns
-        run: 
+        run:
           ls -l {{ env.NUCLEUS_DATAFOLDER }}
