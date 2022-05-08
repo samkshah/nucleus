@@ -207,6 +207,12 @@ for item in assets:
                 logging.warning(
                     "🚩Something went wrong - couldn't find any any vulnerabilities")
 
-# pause for 5 seconds to allow time for the script to finish
-sleep(5)
+# pause few seconds
+sleep(3)
+
+# List files in output directory
+vulnFiles = os.listdir(dataFolder)
+logging.info('Listing files in output directory...', )
+
+
 sys.exit()  # Exit program - should be at the end of this script
