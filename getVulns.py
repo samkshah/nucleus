@@ -212,7 +212,6 @@ sleep(3)
 
 # List files in output directory
 vulnFiles = os.listdir(dataFolder)
-logging.info('Listing files in output directory...', )
-
+logging.info('Listing files in output directory...\n{}'.format(vulnFiles))
 
 sys.exit()  # Exit program - should be at the end of this script
