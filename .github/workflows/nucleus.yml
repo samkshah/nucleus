@@ -21,3 +21,9 @@ jobs:
             LOGLEVEL: 'INFO'
             NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
             NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
+        with:
+          args:
+            --volume={{ env.NUCLEUS_DATAFOLDER }}:{{ env.NUCLEUS_DATAFOLDER }}
+      - name: List Vulns
+        run: 
+          ls -l {{ env.NUCLEUS_DATAFOLDER }}

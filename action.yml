@@ -17,7 +17,7 @@ inputs:
     default: 'vulnerabilities'
   NUCLEUS_API_ENDPOINT:
     description: 'Nucleus API Endpoint'
-    required: false
+    required: true
     default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
   LOGLEVEL:
     description: 'Log Level'
@@ -26,3 +26,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+
+branding:
+  icon: 'shield'
+  color: 'blue'

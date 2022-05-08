@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from pathlib import Path
 import requests
 import logging
 import json
@@ -9,21 +10,14 @@ from time import sleep
 
 # Configure logging - Default "WARNING" for production, set to "DEBUG" for development in environment variables
 LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
-logging.basicConfig(
-    level=LOGLEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=LOGLEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Get directory path for this file - ensures that the output files are saved in the same directory
+# Get directory path for this file - ensures the output files are saved in the same directory
 path = os.path.dirname(os.path.abspath(__file__))
-
-print ("here's the path: " + path)
 
 # Global variables - change these to match your Nucleus account
 project_id = os.environ['NUCLEUS_PROJECT_ID']
-
-print ("project_id: " + project_id)
-
 asset_group = os.environ['NUCLEUS_PROJECT_GROUP']
-
 apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
 
 ### dataFolder configuration
