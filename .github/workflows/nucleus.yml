@@ -24,4 +24,4 @@ jobs:
 
       - name: List Vulns
         run:
-          ls -l {{ env.NUCLEUS_DATAFOLDER }}
+          ls -l $NUCLEUS_DATAFOLDER
