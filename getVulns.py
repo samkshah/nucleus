@@ -8,7 +8,7 @@ import sys
 from time import sleep
 
 # Configure logging - Default "WARNING" for production, set to "DEBUG" for development in environment variables
-LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
+LOGLEVEL = os.environ.get('LOGLEVEL', 'warning').upper()
 logging.basicConfig(
     level=LOGLEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -24,6 +24,9 @@ apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
 # This is the folder where the output files will be saved
 dataFolder = os.environ['NUCLEUS_DATAFOLDER']
 os.makedirs(dataFolder, exist_ok=True)  # Create folder if doesn't exist
+
+exit()
+
 
 # create .gitinclude if doesn't exist
 gitinclude = '{}/.gitinclude'.format(dataFolder)
