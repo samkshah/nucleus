@@ -1,0 +1,41 @@
+name: 'Nuclesus_Vulnerability_Report'
+description: 'Get Vulns from Nuclesus'
+inputs:
+  NUCLEUS_API_ENDPOINT:
+    description: 'Nucleus API Endpoint'
+    required: true
+    default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
+  NUCLEUS_API_KEY:
+    description: 'Nucleus API Key'
+    required: true
+    default: '{{ secrets.NUCLEUS_API_KEY }}'
+  NUCLEUS_PROJECT_GROUP:
+    description: 'Nucleus Project Group'  
+    required: true
+  NUCLEUS_PROJECT_ID:
+    description: 'Nucleus Project ID'
+    required: true
+  NUCLEUS_DATAFOLDER:
+    description: 'Nucleus Datafolder'
+    required: true
+    default: 'nucleus/vulnerabilities'
+  LOGLEVEL:
+    description: 'Log Level'
+    required: true
+    default: 'WARNING'
+runs:
+  using: "composite"
+  steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.x
+          architecture: x64
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        shell: bash
+      - name: Get Vulns
+        run: python3 test.py
+        shell: bash
