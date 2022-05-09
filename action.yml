@@ -36,9 +36,12 @@ runs:
           cache: pip
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install pandas==1.4.2
+          pip install requests==2.27.1
         shell: bash
       
       - name: Get Vulns
-        run: python3 test.py
+        run: |
+          ls -lag
         shell: bash
