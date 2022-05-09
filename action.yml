@@ -27,6 +27,9 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
+    - run:  |
+        ls -lag
+      shell: sh
     - uses: actions/setup-python@v3
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
