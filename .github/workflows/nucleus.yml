@@ -13,6 +13,8 @@ jobs:
         NUCLEUS_PROJECT_GROUP: '/Product Name/Cybersecurity Incident Response'
         NUCLEUS_PROJECT_ID: '13000008'
         NUCLEUS_DATAFOLDER: "nucleus/vulnerabilities"
+        NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
+        LOGLEVEL: "INFO"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
