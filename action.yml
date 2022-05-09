@@ -26,22 +26,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
-          cache: pip
-
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: |
-          pip install pandas==1.4.2
-          pip install requests==2.27.1
-        shell: bash
-      
-      - name: Get Vulns
-        run: |
-          ls -lag
-        shell: bash
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - run: python test.py
+      shell: sh
