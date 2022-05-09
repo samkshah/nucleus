@@ -32,6 +32,11 @@ runs:
       run: |
         pip install -r $GITHUB_ACTION_PATH/requirements.txt
       shell: sh
+
+    - name: Create data folder
+      run: |
+        mkdir -p $NUCLEUS_DATAFOLDER
+      shell: sh
     - name: Run script file
       run: |
         python3 $GITHUB_ACTION_PATH/getVulns.py
