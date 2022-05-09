@@ -34,6 +34,10 @@ runs:
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - name: Install dependencies
+      run: |
+        pip install -r $GITHUB_ACTION_PATH/requirements.txt
+      shell: sh
     - name: list files and run test file
       run: |
         ls -lag $GITHUB_ACTION_PATH/
