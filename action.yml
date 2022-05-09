@@ -37,6 +37,7 @@ runs:
     - name: list files
       run: |
         ls -lag $GITHUB_ACTION_PATH/
+      shell: sh
 
     # - run: python3 $GITHUB_ACTION_PATH/test.py
     #   shell: sh
