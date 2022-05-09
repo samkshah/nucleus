@@ -8,7 +8,6 @@ inputs:
   NUCLEUS_API_KEY:
     description: 'Nucleus API Key'
     required: true
-    default: '{{ secrets.NUCLEUS_API_KEY }}'
   NUCLEUS_PROJECT_GROUP:
     description: 'Nucleus Project Group'  
     required: true
@@ -18,18 +17,13 @@ inputs:
   NUCLEUS_DATAFOLDER:
     description: 'Nucleus Datafolder'
     required: true
-    default: 'nucleus/vulnerabilities'
   LOGLEVEL:
     description: 'Log Level'
     required: true
-    default: 'WARNING'
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
-    - run:  |
-        ls -lag
-      shell: sh
     - uses: actions/setup-python@v3
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
@@ -38,11 +32,12 @@ runs:
       run: |
         pip install -r $GITHUB_ACTION_PATH/requirements.txt
       shell: sh
-    - name: list files and run test file
-      run: |
-        ls -lag $GITHUB_ACTION_PATH/
-      shell: sh
     - name: Run script file
       run: |
         python3 $GITHUB_ACTION_PATH/getVulns.py
+      shell: sh
+    - name: list files from data folder
+      run: |
+        ls -lag $GITHUB_WORKSPACE/
+        ls -lag $GITHUB_WORKSPACE/$NUCLEUS_DATAFOLDER/
       shell: sh
