@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import requests
 import logging
 import json
@@ -16,11 +15,13 @@ logging.basicConfig(
 # Get directory path for this file - ensures the output files are saved in the same directory
 # scriptPath = os.path.dirname(os.path.abspath(__file__))
 
-MANDATORY_ENV_VARS = ["NUCLEUS_API_KEY", "NUCLEUS_ASSET_GROUP", "NUCLEUS_PROJECT_ID"]
+MANDATORY_ENV_VARS = ["NUCLEUS_API_KEY",
+                      "NUCLEUS_ASSET_GROUP", "NUCLEUS_PROJECT_ID"]
 # Check if environment variables are set
 for env_var in MANDATORY_ENV_VARS:
     if not os.environ.get(env_var):
-        logging.error('🚩 {} environment variable is not set. Exiting...'.format(env_var))
+        logging.error(
+            '🚩 {} environment variable is not set. Exiting...'.format(env_var))
         sys.exit()
 
 # Global variables - change these to match your Nucleus account
@@ -28,9 +29,10 @@ project_id = os.environ['NUCLEUS_PROJECT_ID']
 asset_group = os.environ['NUCLEUS_ASSET_GROUP']
 
 apiEndPoint = os.environ.get(
-    'NUCLEUS_API_ENDPOINT', 'https://nucleus-us3.nucleussec.com/nucleus/api') # Set default API endpoint if not provided in environment variables
+    'NUCLEUS_API_ENDPOINT', 'https://nucleus-us3.nucleussec.com/nucleus/api')  # Set default API endpoint if not provided in environment variables
 
-nucleus_datafolder = os.environ.get('NUCLEUS_DATAFOLDER', './') # Set current folder as default if not set in environment variables
+# Set current folder as default if not set in environment variables
+nucleus_datafolder = os.environ.get('NUCLEUS_DATAFOLDER', './')
 
 # dataFolder configuration
 # This is the folder where the output files will be saved
