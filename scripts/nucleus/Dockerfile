@@ -17,4 +17,4 @@ RUN chmod +x getVulns.py
 RUN ls -lag
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT [ "./getVulns.py" ]
+ENTRYPOINT [ "getVulns.py" ]
