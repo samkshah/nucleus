@@ -13,7 +13,7 @@ jobs:
 
       - name: Get Vulns
         uses: ./
-        env:
+        with:
             NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
             NUCLEUS_ASSET_GROUP: '/Product Name/Cybersecurity Incident Response'
             NUCLEUS_PROJECT_ID: '13000008'

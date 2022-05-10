@@ -23,6 +23,13 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.NUCLEUS_API_KEY }}
+    - ${{ inputs.NUCLEUS_ASSET_GROUP }}
+    - ${{ inputs.NUCLEUS_PROJECT_ID }}
+    - ${{ inputs.NUCLEUS_DATAFOLDER }}
+    - ${{ inputs.NUCLEUS_API_ENDPOINT }}
+    - ${{ inputs.LOGLEVEL }}
 
 branding:
   icon: 'shield'
