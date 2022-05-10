@@ -10,6 +10,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 # Copy script file
-COPY test.py .
+COPY getVulns.py .
 # Code file to execute when the docker container starts up
-ENTRYPOINT [ "sh", "-c", "python3 test.py" ]
+ENTRYPOINT [ "sh", "-c", "python3 getVulns.py" ]
