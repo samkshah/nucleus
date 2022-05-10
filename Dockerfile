@@ -12,4 +12,4 @@ FROM python:slim-buster
 # Copy script file
 COPY test.py .
 # Code file to execute when the docker container starts up
-RUN ["python3", "./test.py"]
+ENTRYPOINT [ "sh", "-c", "python3 test.py" ]
