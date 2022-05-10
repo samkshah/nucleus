@@ -1,5 +1,5 @@
 # Get python slim image
-FROM python
+FROM python:slim-buster
 
 # Setup virtualenv
 ENV VIRTUAL_ENV=/opt/venv
@@ -10,6 +10,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 # Copy script file
-COPY getVulns.py ./
+COPY test.py ./
 # Code file to execute when the docker container starts up
-RUN ["python3", "./getVulns.py"]
+RUN ["python3", "./test.py"]
