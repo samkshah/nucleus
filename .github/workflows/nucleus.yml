@@ -20,11 +20,11 @@ jobs:
 
       - name: Get Vulns
         uses: ./
-      # - name: Commit results to Github
-      #   run: |
-      #     cd $NUCLEUS_DATAFOLDER
-      #     git config user.name github-actions
-      #     git config user.email github-actions@github.com
-      #     git add --force .
-      #     git commit -m "🤖 [Github Action]: Saved vulnerabilities details in $NUCLEUS_DATAFOLDER"
-      #     git push origin main
+
+      - name: Commit results to Github
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add --force .
+          git commit -m "🤖 [Github Action]: Saved vulnerabilities details"
+          git push origin main
