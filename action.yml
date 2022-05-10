@@ -13,15 +13,15 @@ inputs:
     required: true
   NUCLEUS_DATAFOLDER:
     description: 'Nucleus Datafolder'
-    required: true
-    default: 'vulnerabilities'
+    required: false
+    default: './'
   NUCLEUS_API_ENDPOINT:
     description: 'Nucleus API Endpoint'
-    required: true
+    required: false
     default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
   LOGLEVEL:
     description: 'Log Level'
-    required: true
+    required: false
     default: 'WARNING'
 runs:
   using: 'docker'
