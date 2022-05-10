@@ -11,10 +11,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy script file
-COPY getVulns.py .
+COPY getVulns.py entrypoint.sh ./
 RUN chmod +x getVulns.py
+RUN chmod +x entrypoint.sh
 
 RUN ls -lag
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT [ "getVulns.py" ]
+ENTRYPOINT [ "entrypoint.sh" ]
