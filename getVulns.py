@@ -6,6 +6,7 @@ import pandas as pd
 import os
 import sys
 from time import sleep
+import shutil
 
 # Configure logging - Default "WARNING" for production, set to "DEBUG" for development in environment variables
 LOGLEVEL = os.environ.get('LOGLEVEL', 'warning').upper()
@@ -13,29 +14,34 @@ logging.basicConfig(
     level=LOGLEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Get directory path for this file - ensures the output files are saved in the same directory
-path = os.path.dirname(os.path.abspath(__file__))
+# scriptPath = os.path.dirname(os.path.abspath(__file__))
 
 # Global variables - change these to match your Nucleus account
 project_id = os.environ['NUCLEUS_PROJECT_ID']
 asset_group = os.environ['NUCLEUS_PROJECT_GROUP']
 apiEndPoint = os.environ['NUCLEUS_API_ENDPOINT']
+nucleus_datafolder = os.environ['NUCLEUS_DATAFOLDER']
 
 # dataFolder configuration
 # This is the folder where the output files will be saved
-dataFolder = os.environ['NUCLEUS_DATAFOLDER']
-os.makedirs(dataFolder, exist_ok=True)  # Create folder if doesn't exist
+# dataFolder = os.environ['NUCLEUS_DATAFOLDER']
+dataFolder = '{}/{}'.format(nucleus_datafolder, 'nucleus_data')
+vulnFolder = '{}/{}'.format(dataFolder, 'vulnData')
 
-exit()
-
+# Delete pre-existing data files and directories if already exist
+shutil.rmtree(dataFolder) if os.path.exists(dataFolder) else None
+# Create data folders
+os.makedirs(vulnFolder, exist_ok=True)
 
 # create .gitinclude if doesn't exist
-gitinclude = '{}/.gitinclude'.format(dataFolder)
-if not os.path.exists(gitinclude):
-    # create a file
-    with open(gitinclude, 'w') as fp:
-        # uncomment if you want empty file
-        fp.write(
-            'DO NOT DELETE - This is required to make sure that the output files are tracked by git')
+# gitinclude = '{}/.gitinclude'.format(dataFolder)
+# if not os.path.exists(gitinclude):
+#     # create a file
+#     with open(gitinclude, 'w') as fp:
+#         # uncomment if you want empty file
+#         fp.write(
+#             'DO NOT DELETE - This is required to make sure that the output files are tracked by git')
+#         fp.close()
 
 # API Configuration
 # Do not store API key in github code. Use environment variables instead.
@@ -92,7 +98,7 @@ logging.info(
 assets = get_assets(project_id, asset_group)
 
 # Save as CSV file
-filename = 'assets.csv'
+filename = '{}/assets.csv'.format(dataFolder)
 # Flatten and convert to a data frame
 df = pd.json_normalize(assets, max_level=1, errors='ignore')
 df.to_csv(filename, sep=',', encoding='utf-8',
@@ -100,9 +106,9 @@ df.to_csv(filename, sep=',', encoding='utf-8',
 logging.info('Successfully saved assets to {}'.format(filename))
 
 # Save as JSON file
-filename = 'assets.json'
+filename = '{}/assets.json'.format(dataFolder)
 with open(filename, 'w') as f:
-    json.dump(assets, f, indent=4)  # Save as JSON file
+    json.dump(filename, f, indent=4)  # Save as JSON file
 logging.info('Successfully saved assets to {}'.format(filename))
 
 # Step 2: Create CSV file for vulnerable hosts
@@ -143,11 +149,10 @@ for item in assets:
             item['asset_name']))
 
 # write hostList to csv file
-filename = 'vulnAssets.csv'
+filename = '{}/vulnerable_assets.csv'.format(dataFolder)
 df = pd.DataFrame(hostList)
-df.to_csv(os.path.join(path, dataFolder, filename), index=False, header=True)
-logging.info('List of vulnerable hosts saved to {}...'.format(
-    os.path.join(path, dataFolder, filename)))
+df.to_csv(filename, index=False, header=True)
+logging.info('List of vulnerable hosts saved to {}...'.format(filename))
 
 #######
 # Get vulnerabilities for each of above assets
@@ -191,28 +196,23 @@ for item in assets:
                 # convert list to json object
                 vulnObj = json.dumps(vulnList, indent=4)
                 # save json object to file
-                with open(os.path.join(path, dataFolder, jsonFile), 'w') as outfile:
+                with open(os.path.join(vulnFolder, jsonFile), 'w') as outfile:
                     json.dump(vulnList, outfile)
                 logging.info('...✅ Vulnerabilities saved to {}'.format(
-                    os.path.join(path, dataFolder, jsonFile)))
+                    os.path.join(vulnFolder, jsonFile)))
                 # Save list to csv file
                 # Flatten and convert list to a data frame
                 df = pd.json_normalize(vulnList, max_level=1, errors='ignore')
-                df.to_csv(os.path.join(path, dataFolder, csvFile), sep=',',
+                df.to_csv(os.path.join(vulnFolder, csvFile), sep=',',
                           encoding='utf-8', index=None, header=True)  # Save as csv file
                 logging.info('...✅ Vulnerabilities saved to {}'.format(
-                    os.path.join(path, dataFolder, csvFile)))
+                    os.path.join(vulnFolder, csvFile)))
             else:
                 logging.warning(
-                    "🚩Something went wrong - couldn't find any any vulnerabilities")
+                    "🚩Something went wrong - couldn't find any vulnerabilities")
 
 # pause few seconds
 sleep(3)
-
-# List files in output directory
-vulnFiles = os.listdir(dataFolder)
-logging.info('👇 Vuln data in output directory...\n{}'.format(vulnFiles))
-logging.warning('✅ Vulnerability data files created in {}'.format(dataFolder))
 
 # Exit program - should be at the end of this script
 sys.exit()
