@@ -9,9 +9,11 @@ jobs:
       contents: write
     env:
         NUCLEUS_API_KEY: ${{ secrets.NUCLEUS_API_KEY }}
-        NUCLEUS_PROJECT_GROUP: '/Product Name/Cybersecurity Incident Response'
+        NUCLEUS_ASSET_GROUP: '/Product Name/Cybersecurity Incident Response'
         NUCLEUS_PROJECT_ID: '13000008'
         NUCLEUS_API_ENDPOINT: "https://nucleus-us3.nucleussec.com/nucleus/api"
+        NUCLEUS_DATAFOLDER: './'
+        LOGLEVEL: 'info'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
