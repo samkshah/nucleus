@@ -15,14 +15,14 @@ logging.basicConfig(
 # Get directory path for this file - ensures the output files are saved in the same directory
 # scriptPath = os.path.dirname(os.path.abspath(__file__))
 
-MANDATORY_ENV_VARS = ["NUCLEUS_API_KEY",
-                      "NUCLEUS_ASSET_GROUP", "NUCLEUS_PROJECT_ID"]
+# MANDATORY_ENV_VARS = ["NUCLEUS_API_KEY",
+#                       "NUCLEUS_ASSET_GROUP", "NUCLEUS_PROJECT_ID"]
 # Check if environment variables are set
-for env_var in MANDATORY_ENV_VARS:
-    if not os.environ.get(env_var):
-        logging.error(
-            '🚩 {} environment variable is not set. Exiting...'.format(env_var))
-        sys.exit()
+# for env_var in MANDATORY_ENV_VARS:
+#     if not os.environ.get(env_var):
+#         logging.error(
+#             '🚩 {} environment variable is not set. Exiting...'.format(env_var))
+#         sys.exit()
 
 # Global variables - change these to match your Nucleus account
 project_id = os.environ['NUCLEUS_PROJECT_ID']
