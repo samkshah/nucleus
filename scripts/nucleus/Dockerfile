@@ -7,11 +7,11 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies
-COPY requirements.txt .
+COPY scripts/nucleus/requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy script file
-COPY getVulns.py .
+COPY scripts/nucleus/getVulns.py .
 RUN chmod +x getVulns.py
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
