@@ -7,9 +7,10 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies
-RUN ls -lag
-COPY scripts/nucleus/requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+RUN ls -lag 
 
 # Copy script file
 COPY scripts/nucleus/getVulns.py .
