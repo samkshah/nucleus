@@ -26,8 +26,7 @@ runs:
     - name: Install python
       uses: actions/setup-python@v3
       with:
-        python:
-          version: "3.x"
+        python-version: "3.x"
 
     - name: install dependencies
       run: |
