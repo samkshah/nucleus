@@ -21,8 +21,10 @@ inputs:
     description: 'Log Level'
     required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - run: python3 $GITHUB_ACTION_PATH/getVulns.py
+      shell: bash
 branding:
   icon: 'shield'
   color: 'blue'
