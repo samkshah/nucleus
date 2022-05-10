@@ -10,6 +10,6 @@ FROM python
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 # Copy script file
-COPY test.py ./
+COPY getVulns.py ./
 # Code file to execute when the docker container starts up
-RUN ["python3", "./test.py"]
+RUN ["python3", "./getVulns.py"]
