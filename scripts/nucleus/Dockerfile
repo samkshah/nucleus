@@ -10,11 +10,11 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN ls -lag 
-
 # Copy script file
-COPY scripts/nucleus/getVulns.py .
+COPY getVulns.py .
 RUN chmod +x getVulns.py
+
+RUN ls -lag
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 CMD ["python3","getVulns.py"]
