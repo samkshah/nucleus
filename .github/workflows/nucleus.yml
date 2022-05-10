@@ -20,6 +20,13 @@ jobs:
 
       - name: Get Vulns
         uses: ./
+        with:
+          NUCLEUS_API_KEY: ${{ env.NUCLEUS_API_KEY }}
+          NUCLEUS_ASSET_GROUP: ${{ env.NUCLEUS_ASSET_GROUP }}
+          NUCLEUS_PROJECT_ID: ${{ env.NUCLEUS_PROJECT_ID }}
+          NUCLEUS_API_ENDPOINT: ${{ env.NUCLEUS_API_ENDPOINT }}
+          NUCLEUS_DATAFOLDER: ${{ env.NUCLEUS_DATAFOLDER }}
+          LOGLEVEL: ${{ env.LOGLEVEL }}
 
       - name: Commit results to Github
         run: |
