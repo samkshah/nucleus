@@ -7,6 +7,7 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies
+RUN ls -lag
 COPY scripts/nucleus/requirements.txt .
 RUN pip install -r requirements.txt
 
