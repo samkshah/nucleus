@@ -18,7 +18,7 @@ inputs:
   NUCLEUS_API_ENDPOINT:
     description: 'Nucleus API Endpoint'
     required: false
-    default: 'https://nucleus-us3.nucleussec.com/nucleus/api'
+    default: "https://nucleus-us3.nucleussec.com/nucleus/api"
   LOGLEVEL:
     description: 'Log Level'
     required: false
