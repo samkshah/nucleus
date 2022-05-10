@@ -23,8 +23,24 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: python3 $GITHUB_ACTION_PATH/getVulns.py
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install python
+      uses: actions/setup-python@v3
+      with:
+        python:
+          version: "3.x"
+
+    - name: install dependencies
+      run: |
+        pip install -r requirements.txt
       shell: bash
+
+    - name: Get Vulns
+      run: python3 $GITHUB_ACTION_PATH/getVulns.py
+      shell: bash
+
 branding:
   icon: 'shield'
   color: 'blue'
