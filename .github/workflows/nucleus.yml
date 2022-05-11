@@ -1,6 +1,5 @@
 on: 
   workflow_dispatch:
-  push:
 jobs:
   retrieve-nucleus-vulns:
     name: Nucleus_Vulnerability_Report
