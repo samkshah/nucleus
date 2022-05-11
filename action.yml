@@ -30,7 +30,7 @@ runs:
 
     - name: install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r $GITHUB_ACTION_PATH/requirements.txt
       shell: bash
 
     - name: Get Vulns
