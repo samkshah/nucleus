@@ -22,7 +22,7 @@ for env_var in MANDATORY_ENV_VARS:
     if not os.environ.get(env_var):
         logging.error(
             '🚩 {} environment variable is not set. Exiting...'.format(env_var))
-        sys.exit()
+        sys.exit(1)
 
 # Global variables - change these to match your Nucleus account
 project_id = os.environ['NUCLEUS_PROJECT_ID']
@@ -80,7 +80,7 @@ def get_assets(projectId, assetGroup):
     else:
         logging.error('🚩 Could not get Assets. Exiting...\n\t\t\t...Error Code: {}\n\t\t\t...Reason: {}\n\t\t\t...Error Msg: {}'.format(
             r.status_code, r.reason, r.text))
-        sys.exit()
+        sys.exit(1)
 
 # Function to get list of vulnerabilities for an asset from Nucleus
 
@@ -96,7 +96,7 @@ def get_vulns(projectId, assetId):
     else:
         logging.error('🚩Could not get Vulnerability data\n...Error Code: {}\n...Reason: {}\n...Error Msg: {}'.format(
             r.status_code, r.reason, r.text))
-        sys.exit()
+        sys.exit(1)
 
 #######
 # Get list of all assets for the group and save as csv and JSON files
@@ -226,4 +226,4 @@ for item in assets:
 sleep(3)
 
 # Exit program - should be at the end of this script
-sys.exit()
+sys.exit(0)

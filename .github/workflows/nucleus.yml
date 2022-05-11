@@ -13,15 +13,22 @@ jobs:
       NUCLEUS_PROJECT_ID: '13000008'
       NUCLEUS_API_ENDPOINT: 'https://nucleus-us3.nucleussec.com/nucleus/api'
       NUCLEUS_DATAFOLDER: './'
-      LOGLEVEL: 'info'
+      LOGLEVEL: 'warning'
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Get Vulns
+        id: get-nucleus-vulns
+        continue-on-error: false
+        timeout-minutes: 5
         uses: ./
 
       - name: Commit results to Github
+        id: commit-results
+        continue-on-error: false
+        timeout-minutes: 1
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
