@@ -221,6 +221,7 @@ for item in assets:
             else:
                 logging.warning(
                     "🚩Something went wrong - couldn't find any vulnerabilities")
+                sys.exit(1)
 
 # pause few seconds
 sleep(3)
