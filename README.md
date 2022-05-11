@@ -68,8 +68,7 @@ jobs:
 
 ## Vulnerability Data
 
-If you are storing data in your repository, here's how the data will be structured.
-
+If you are storing data in your repository, here's how the data will be structured within `NUCLEUS_DATAFOLDER` folder mentioned in above github workflow.
 ```text
 .
 ├── assets.csv
